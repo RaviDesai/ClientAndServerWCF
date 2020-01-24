@@ -13,6 +13,10 @@ namespace Client
 		{
 			var instanceContext = new InstanceContext(new ClientCallbackHandler());
 			var contractClient = new ContractClient(instanceContext);
+			var binding = contractClient.Endpoint.Binding as WSDualHttpBinding;
+			var clientCallbackAddress = binding.ClientBaseAddress.AbsoluteUri + Guid.NewGuid().ToString();
+			Console.WriteLine($"ClientCallbaclAddress: {clientCallbackAddress}");
+			binding.ClientBaseAddress = new Uri(clientCallbackAddress);
 
 			var name = string.Empty;
 			var done = false;
