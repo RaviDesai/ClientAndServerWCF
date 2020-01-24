@@ -19,8 +19,11 @@ namespace Client
 			try
 			{
 				contractClient.Open();
+				Console.WriteLine(contractClient.State.ToString());
 				contractClient.Join("User");
 				name = "User";
+				Console.WriteLine(contractClient.State.ToString());
+				Console.WriteLine("Connected as User");
 			}
 			catch(Exception e)
 			{
@@ -37,7 +40,7 @@ namespace Client
 					joinMsg = $"[Joined as {name}]";
 				}
 				Console.WriteLine();
-				Console.WriteLine($"Menu {joinMsg}");
+				Console.WriteLine($"Menu {joinMsg} Connection State: {contractClient.State.ToString()}");
 				Console.WriteLine("     Enter 'x' to exit client");
 				Console.WriteLine("     Enter 'j:<name>' to join");
 				Console.WriteLine("     Enter 'l' to leave");
@@ -55,6 +58,7 @@ namespace Client
 				{
 					try
 					{
+						Console.WriteLine(contractClient.State.ToString());
 						contractClient.Leave();
 						name = null;
 					}
@@ -71,6 +75,7 @@ namespace Client
 					{
 						try
 						{
+							Console.WriteLine(contractClient.State.ToString());
 							contractClient.Join(newname);
 							name = newname;
 						}
@@ -93,6 +98,7 @@ namespace Client
 						{
 							try
 							{
+								Console.WriteLine(contractClient.State.ToString());
 								contractClient.Ping(msg);
 							}
 							catch (Exception e)
@@ -118,6 +124,7 @@ namespace Client
 			}
 			try
 			{
+				Console.WriteLine(contractClient.State.ToString());
 				contractClient.Close();
 			}
 			catch (Exception e)

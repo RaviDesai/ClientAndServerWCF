@@ -3,14 +3,14 @@ using System.ServiceModel;
 
 namespace Contract
 {
-	[ServiceContract(Namespace = "http://careevolution.com/sample", SessionMode = SessionMode.Allowed, CallbackContract = typeof(ICallbackContract))]
+	[ServiceContract(Namespace = "http://careevolution.com/sample", ConfigurationName="Contract.IContract", SessionMode = SessionMode.Allowed, CallbackContract = typeof(ICallbackContract))]
 	public interface IContract
 	{
-		[OperationContract(IsOneWay = true)]
+		[OperationContract]
 		void Ping(string value);
-		[OperationContract(IsOneWay = true)]
+		[OperationContract]
 		void Join(string asName);
-		[OperationContract(IsOneWay = true)]
+		[OperationContract]
 		void Leave();
 	}
 
